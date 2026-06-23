@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
 
-public abstract class FancyBehaviour : MonoBehaviour
+public abstract class FancyBehaviour : NetworkBehaviour
 {
     [Inject]
     private IEventSystem _eventSys;
