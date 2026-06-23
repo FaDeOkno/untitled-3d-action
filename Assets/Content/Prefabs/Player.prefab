@@ -140,8 +140,8 @@ GameObject:
   - component: {fileID: 396799329942430194}
   - component: {fileID: 3394671026788392005}
   - component: {fileID: 2429341432498028444}
-  - component: {fileID: 3397260317005505943}
-  - component: {fileID: 5067734056032612184}
+  - component: {fileID: 19003754496156969}
+  - component: {fileID: 2724346495546023055}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -178,6 +178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d18e0cf124f7d4487f2e9ea5f0f3ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GenericMovement
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   _footstepSounds:
     _generator:
       Reference: {fileID: 6418180475301049370, guid: ffaf70644d697024a956f559a2ae97e2, type: 2}
@@ -504,6 +507,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a591b82bc241f8449abe5a6571044b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WallRunner
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   _verticalVelocityDeceleration: 6
   _rotationLerpAmount: 3
   _wallrunAcceleration: 6
@@ -593,6 +599,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de15d71caeed54a42b571cb11095600d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MultipleJumps
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   MaxAirJumps: 1
 --- !u!114 &1291210436595785830
 MonoBehaviour:
@@ -606,6 +615,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d91c183625c2a49a88afb2e3f59d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sliding
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   _slideDuration: 2
   _slideSpeed: 19
   _slideJumpSpeed: 15
@@ -654,6 +666,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0897ee5cefd45ee48bb3286f7803aab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedModifyAbility
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   _modifier: 1.3
   _duration: 14
 --- !u!114 &2429341432498028444
@@ -668,10 +683,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4b16a4398616d40a7bfe17e4a48bd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsHolder
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   _weapon1: {fileID: 11400000, guid: d74b3418e7a858840bb0206ccc1730c1, type: 2}
   _weapon2: {fileID: 0}
   _firstWeapon: 1
-  _collider: {fileID: 3397260317005505943}
+  _collider: {fileID: 0}
   _switchWeaponSound:
     _generator:
       Reference: {fileID: 0}
@@ -684,30 +702,7 @@ MonoBehaviour:
       Pitch: 1
       SpatialBlend: 0
       ReverbZoneMix: 1
---- !u!136 &3397260317005505943
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7573248951399059200}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5067734056032612184
+--- !u!114 &19003754496156969
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -716,9 +711,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 7573248951399059200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e25343418a5a1f94d838a70520f6c502, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerPortalHandler
+  m_EditorClassIdentifier: Mirror::Mirror.NetworkIdentity
+  sceneId: 0
+  _assetId: 3336259961
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
+--- !u!114 &2724346495546023055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7573248951399059200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mirror.Components::Mirror.NetworkTransformReliable
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1875792780243774822}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  timelineOffset: 1
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  useFixedUpdate: 0
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &8728528781304050245
 GameObject:
   m_ObjectHideFlags: 0

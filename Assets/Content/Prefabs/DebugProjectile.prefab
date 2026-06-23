@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: -7043802342017255934}
   - component: {fileID: 5813203460532354807}
   - component: {fileID: 5391275124354590649}
+  - component: {fileID: -8368927717291715350}
+  - component: {fileID: 311591653055385967}
   m_Layer: 10
   m_Name: DebugProjectile
   m_TagString: Untagged
@@ -156,10 +158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b38efb22d67225f48992ff005310c0ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  Velocity: {x: 0, y: 0, z: 0}
-  _rb: {fileID: 2367287767671229637}
-  _collider: {fileID: 5261851621038664534}
-  Player: {fileID: 0}
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &-7043802342017255934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +186,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caf10a2300155ad4287336481dcc34d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyOnCollide
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!96 &5391275124354590649
 TrailRenderer:
   serializedVersion: 4
@@ -304,3 +308,54 @@ TrailRenderer:
   m_Autodestruct: 1
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &-8368927717291715350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6521787214382137834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mirror::Mirror.NetworkIdentity
+  sceneId: 0
+  _assetId: 1792837445
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
+--- !u!114 &311591653055385967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6521787214382137834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803efbe62c34d7baece46c9ffebad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mirror.Components::Mirror.NetworkRigidbodyReliable
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 240751894746223711}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  timelineOffset: 1
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  useFixedUpdate: 0
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
