@@ -2,7 +2,7 @@ using UnityEngine;
 using Mirror;
 using Zenject;
 
-public class ZenjectNetworkSpawner : FancyBehaviour
+public class ZenjectNetworkSpawner : NetFancyBehaviour
 {
     [SerializeField] private NetworkIdentity[] networkPrefabs;
 

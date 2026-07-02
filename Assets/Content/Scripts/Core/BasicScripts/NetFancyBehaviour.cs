@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
 
-public abstract class FancyBehaviour : MonoBehaviour
+public abstract class NetFancyBehaviour : NetworkBehaviour
 {
     [Inject]
     private IEventSystem _eventSys;
