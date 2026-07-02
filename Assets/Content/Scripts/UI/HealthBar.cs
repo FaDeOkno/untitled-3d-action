@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public class HealthBar : MonoBehaviour
+public class HealthBar : FancyBehaviour
 {
     [SerializeField]
     private bool _alwaysActive = false;
@@ -14,22 +14,25 @@ public class HealthBar : MonoBehaviour
     private Damageable _damageable;
 
     private Slider _slider;
-    
+
 
     void Start()
     {
         _slider = GetComponent<Slider>();
-
-        _damageable.OnDamageChanged += (arg1, arg2) => OnValueChanged(arg1, arg2);
     }
 
-    void Update()
+    protected override void InitializeEvents()
     {
-        
+        base.InitializeEvents();
+
+        SubscribeEvent<DamageChangedEvent>(OnDamageChanged);
     }
 
-    public void OnValueChanged(float curValue, float maxValue)
+    public void OnDamageChanged(ref DamageChangedEvent ev)
     {
-        _slider.value = 1 - curValue / maxValue;
+        if (ev.Source != _damageable.gameObject)
+            return;
+
+        _slider.value = 1 - ev.CurrentDamage / ev.MaxDamage;
     }
 }

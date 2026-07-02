@@ -4,7 +4,7 @@ using UnityEngine.Events;
 /// <summary>
 /// This component defines game object health
 /// </summary>
-public class Damageable : MonoBehaviour
+public class Damageable : FancyBehaviour
 {
     [SerializeField]
     private float _health = 100f;
@@ -12,22 +12,17 @@ public class Damageable : MonoBehaviour
     [SerializeField]
     private float _damage = 0f;
 
-    public UnityAction<float, float> OnDamageChanged;
-    public UnityAction OnMaxDamageReached;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        OnDamageChanged?.Invoke(_damage, _health);
-    }
-
     public void TryChangeDamage(float damage)
     {
         _damage += damage;
 
-        OnDamageChanged?.Invoke(_damage, _health);
+        var ev = new DamageChangedEvent(gameObject, _damage, _health);
+        RaiseLocalEvent(ref ev, true);
 
         if (_damage >= _health)
-            OnMaxDamageReached?.Invoke();
+        {
+            var maxEv = new MaxDamageReachedEvent(gameObject);
+            RaiseLocalEvent(ref maxEv, true);
+        }
     }
 }

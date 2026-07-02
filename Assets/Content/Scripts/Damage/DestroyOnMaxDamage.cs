@@ -3,20 +3,17 @@ using UnityEngine;
 /// <summary>
 /// This component destroys owner when it reaches max damage
 /// </summary>
-[RequireComponent(typeof(Damageable))]
-public class DestroyOnMaxDamage : MonoBehaviour
+public class DestroyOnMaxDamage : FancyBehaviour
 {
-    private Damageable _damageable;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void InitializeEvents()
     {
-        _damageable = GetComponent<Damageable>();
-        _damageable.OnMaxDamageReached += () => Destroy(gameObject);
+        base.InitializeEvents();
+
+        SubscribeLocalEvent<MaxDamageReachedEvent>(OnMaxDamage);
     }
 
-    void OnDisable()
+    void OnMaxDamage(ref MaxDamageReachedEvent ev)
     {
-        _damageable.OnMaxDamageReached -= () => Destroy(gameObject);
+        PoolHide(gameObject);
     }
 }
