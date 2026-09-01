@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 /// This component handles the most common movement, such as walking, running, crouching and jumping
 /// </summary>
 [RequireComponent(typeof(CharacterController))]
-public partial class GenericMovement : FancyBehaviour
+public partial class GenericMovement : NetFancyBehaviour
 {
     private CharacterController _cc;
 
@@ -47,6 +47,10 @@ public partial class GenericMovement : FancyBehaviour
         UpdateGrounded();
         UpdateFootsteps();
         UpdateHeight();
+
+        if (!isOwned)
+            return;
+
         UpdateMovement();
     }
 

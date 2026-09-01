@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -75,6 +76,7 @@ public partial class GenericMovement
         IsGrounded = grounded;
     }
 
+    [Client]
     private void UpdateMovement()
     {
         if (Input.y <= 0 && CurrentMoveState == MoveState.Running && IsGrounded)

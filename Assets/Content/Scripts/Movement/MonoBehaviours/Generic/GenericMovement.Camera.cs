@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,8 +31,12 @@ public partial class GenericMovement
     private Vector2 _cameraMove = Vector2.zero;
     private float _verticalRotation = 0f;
 
+    [Client]
     private void UpdateCamera()
     {
+        if (!isOwned)
+            return;
+
         if (_cameraMove.sqrMagnitude <= 0.01f)
             return;
 
