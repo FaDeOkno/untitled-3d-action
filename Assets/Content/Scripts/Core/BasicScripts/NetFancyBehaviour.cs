@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Mirror;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
@@ -11,6 +12,9 @@ public abstract class NetFancyBehaviour : NetworkBehaviour
 
     [Inject]
     private IObjectPool _pool;
+
+    [Inject]
+    private DiContainer _diContainer;
 
     private struct SubscribedEvent
     {
@@ -128,12 +132,12 @@ public abstract class NetFancyBehaviour : NetworkBehaviour
 
     public void PoolHide(GameObject target)
     {
-        _pool.HideObject(target);
+        _diContainer.Inject(target.GetOrAddComponent<PoolHideQueued>());
     }
 
     public void PoolHide()
     {
-        _pool.HideObject(gameObject);
+        _diContainer.Inject(gameObject.GetOrAddComponent<PoolHideQueued>());
     }
     #endregion
 }
